@@ -1,0 +1,17 @@
+screen 00 = front
+screen 01 = signup
+screen 02 = userdashbaord
+screen 03 = nomadicdashboard
+screen04 = userdashbaord [diff method]
+screen05 = user-discover
+screen06 = user-trending
+screen07 = user-yourtravels
+screen08 = user-account
+
+
+#issues still facing
+-screen scaling
+-page ui
+ -back buttons on each page 
+-combobox linking [done]
+-window icon

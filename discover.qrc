@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>city.jpg</file>
+    <file>restaur.jfif</file>
+    <file>hotel.jfif</file>
+    <file>toursit.jfif</file>
+  </qresource>
+</RCC>
