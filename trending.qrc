@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>trendin1.jpg</file>
+    <file>trendin2.jpg</file>
+    <file>trendin3.jpg</file>
+    <file>trendin4.jfif</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>cred1.png</file>
+    <file>creds.png</file>
+    <file>TravelsIcon.png</file>
+    <file>accIcon.png</file>
+    <file>TrendIcon.png</file>
+    <file>iconpg.png</file>
+    <file>DiscoverIcon.png</file>
+  </qresource>
+</RCC>
