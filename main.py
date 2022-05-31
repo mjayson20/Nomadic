@@ -4,35 +4,66 @@ from PyQt5 import QtGui
 import sys
 import source, source02, discover, trending
 import mysql.connector as mys
-mycon = mys.connect(host = 'localhost', user = 'AdminMJ', passwd = 'doodle123mj', database = 'nomadic')
-if mycon.is_connected():
-    print("Success")
+
 
 class front(QtWidgets.QMainWindow):
     def __init__(self):
         super(front, self).__init__()
         loadUi("front.ui", self)
         self.pushButton1.clicked.connect(self.gotosignup)
-        self.passwordEdit.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.pushButton.clicked.connect(self.profileSel)
+        self.profilecomb.activated[str].connect(self.onActivated)
 
-    def profileSel(self):
+        
+        self.passwordEdit.setEchoMode(QtWidgets.QLineEdit.Password)
+
+    def onActivated(self):
         profile = self.profilecomb.currentText()
-        if (profile == 'User'):
-            self.pushButton.clicked.connect(self.gotouserd) 
+        if (profile == 'User') :
+             self.pushButton.clicked.connect(self.gotouserd)
         elif (profile == 'Nomadic'):
             self.pushButton.clicked.connect(self.gotonomad)  
         elif (profile == 'Admin'):
             print("Admin Soon")
-       
-   
+
+
+    
     def gotosignup(self):
         widget.setCurrentIndex(1)   
     def gotouserd(self):
-        widget.setCurrentIndex(2)
+        msg = QtWidgets.QMessageBox()
+        if (self.usernameEdit.text() == 'xxx' and self.passwordEdit.text() == '000'):
+            msg.setText('Success')
+            msg.setWindowTitle('Login')
+            msg.setWindowIcon(QtGui.QIcon("iconpg.png"))
+            msg.setFixedWidth(500)
+            msg.setFixedHeight(400)
+            msg.exec_()
+            widget.setCurrentIndex(2)
+        else:
+            msg.setText('Invalid Credentials')
+            msg.setWindowTitle('Login')
+            msg.setWindowIcon(QtGui.QIcon("iconpg.png"))
+            msg.setFixedWidth(500)
+            msg.setFixedHeight(400)
+            msg.exec_()
+        
     def gotonomad(self):
-        widget.setCurrentIndex(3)
-
+        msg = QtWidgets.QMessageBox()
+        if (self.usernameEdit.text() == 'xxx' and self.passwordEdit.text() == '000'):
+            msg.setText('Success')
+            msg.setWindowTitle('Login')
+            msg.setWindowIcon(QtGui.QIcon("iconpg.png"))
+            msg.setFixedWidth(500)
+            msg.setFixedHeight(400)
+            msg.exec_()
+            widget.setCurrentIndex(3)
+        else:
+            msg.setText('Invalid Credentials')
+            msg.setWindowTitle('Login')
+            msg.setWindowIcon(QtGui.QIcon("iconpg.png"))
+            msg.setFixedWidth(500)
+            msg.setFixedHeight(400)
+            msg.exec_()
 
 #dashboardbuttons
 class home(QtWidgets.QMainWindow):
@@ -82,9 +113,6 @@ class cred(QtWidgets.QMainWindow):
         self.accGoback.clicked.connect(self.gotouserdash)
     def gotouserdash(self):
         widget.setCurrentIndex(2)
-
-
-
 
 
 
@@ -177,4 +205,3 @@ widget.setWindowTitle('Nomadic')
 widget.show()
 
 sys.exit(app.exec_())
-
