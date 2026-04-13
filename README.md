@@ -144,7 +144,7 @@ Login (front.ui)
 
 ## Security Notes
 
-- Passwords are hashed with **bcrypt** — plaintext passwords are never stored
+- Passwords are hashed with **bcrypt** : plaintext passwords are never stored
 - DB credentials are read from **environment variables** via a `.env` file — never hardcoded
 - A `Session` class tracks the logged-in user and role at runtime, so all back-buttons and navigation resolve to the correct dashboard automatically
 
