@@ -35,6 +35,8 @@ Nomadic is a PyQt5 desktop application for travellers. It supports two user role
 ```
 Nomadic/
 ├── main.py              # Application entry point — all screens and navigation
+├── db.py                # DB connection helper + table initialisation
+├── .env.example         # Environment variable template (copy to .env)
 ├── *.ui                 # Qt Designer UI layout files
 │   ├── front.ui         # Login screen
 │   ├── signup.ui        # Sign-up screen
@@ -65,6 +67,7 @@ Nomadic/
 - Python 3.8+
 - PyQt5
 - MySQL server
+- `bcrypt` (installed via requirements)
 - Qt Designer (optional, for editing `.ui` files)
 - `pyrcc5` (bundled with PyQt5 tools)
 
@@ -96,18 +99,20 @@ pyrcc5 trending.qrc -o trending.py
 
 ### Database Setup
 
-Create a MySQL database and update the connection details in `main.py`:
+Create a MySQL database, then copy `.env.example` to `.env` and fill in your credentials:
 
-```python
-mycon = mys.connect(
-    host='localhost',
-    user='your_db_user',
-    passwd='your_db_password',
-    database='nomadic'
-)
+```bash
+cp .env.example .env
 ```
 
-> Tip: Use environment variables or a config file to avoid committing credentials.
+```env
+DB_HOST=localhost
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_NAME=nomadic
+```
+
+The app reads these at startup via `db.py` and automatically creates the `users` table if it doesn't exist. Passwords are stored as **bcrypt hashes** — never plaintext.
 
 ### Run the App
 
@@ -136,6 +141,14 @@ Login (front.ui)
     ├── Credentials
     └── Logout → Login
 ```
+
+## Security Notes
+
+- Passwords are hashed with **bcrypt** — plaintext passwords are never stored
+- DB credentials are read from **environment variables** via a `.env` file — never hardcoded
+- A `Session` class tracks the logged-in user and role at runtime, so all back-buttons and navigation resolve to the correct dashboard automatically
+
+---
 
 ## Contributing
 
